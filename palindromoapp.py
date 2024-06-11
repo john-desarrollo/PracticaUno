@@ -1,1 +1,0 @@
-print("Tienda de palabras")
