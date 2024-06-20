@@ -3,12 +3,12 @@ pipeline {
   stages {
     stage('version') {
       steps {
-        sh 'python3 --version'
+        sh 'python --version'
       }
     }
     stage('palindromoapp') {
       steps {
-        sh 'python3 palindromoapp.py'
+        sh 'python palindromoapp.py'
       }
     }
   }
