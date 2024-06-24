@@ -1,5 +1,5 @@
 import pytest
-from palindromoapp import es_palindromo
+from palindromo import es_palindromo
 
 def test_palindromo():
     assert es_palindromo("radar") == True
