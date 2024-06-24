@@ -1,11 +1,15 @@
 pipeline {
     agent any
 
+    environment {
+        PATH = "C:\\path\\to\\python\\Scripts;C:\\path\\to\\python;%PATH%"
+    }
+
     stages {
         stage('Preparar') {
             steps {
                 echo 'Preparando el entorno...'
-                cleanWs()  // Limpia el espacio de trabajo antes de comenzar
+                cleanWs()
             }
         }
         stage('Instalar Dependencias') {
