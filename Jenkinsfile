@@ -23,10 +23,9 @@ pipeline {
         stage('Ejecutar Script') {
             steps {
                 echo 'Ejecutando el script principal...'
-                input message: 'Ingrese una palabra:', ok: 'Continuar', parameters: [string(defaultValue: 'radar', description: 'Palabra a verificar', name: 'PALABRA')]
                 script {
-                    def palabra = params.PALABRA
-                    sh "python palindromo.py <<< ${palabra}"
+                    def palabra = input message: 'Ingrese una palabra:', ok: 'Continuar', parameters: [string(defaultValue: 'radar', description: 'Palabra a verificar', name: 'PALABRA')]
+                    sh "echo ${palabra} | python palindromo.py"
                 }
             }
         }
