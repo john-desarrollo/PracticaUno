@@ -5,29 +5,29 @@ pipeline {
         stage('Preparar') {
             steps {
                 echo 'Preparando el entorno...'
-                // Limpia el espacio de trabajo antes de comenzar
-                cleanWs()
+                cleanWs()  // Limpia el espacio de trabajo antes de comenzar
             }
         }
         stage('Instalar Dependencias') {
             steps {
                 echo 'Instalando dependencias...'
-                // Instala las dependencias definidas en requirements.txt
                 sh 'pip install -r requirements.txt'
             }
         }
         stage('Ejecutar Pruebas') {
             steps {
                 echo 'Ejecutando pruebas...'
-                // Ejecuta los tests, asumiendo que se usa pytest
                 sh 'pytest tests'
             }
         }
-        stage('Empaquetar') {
+        stage('Ejecutar Script') {
             steps {
-                echo 'Empaquetando la aplicación...'
-                // Empaqueta la aplicación, este paso puede variar según tus necesidades
-                sh 'tar -czf my-python-app.tar.gz palindromoapp.py'
+                echo 'Ejecutando el script principal...'
+                input message: 'Ingrese una palabra:', ok: 'Continuar', parameters: [string(defaultValue: 'radar', description: 'Palabra a verificar', name: 'PALABRA')]
+                script {
+                    def palabra = params.PALABRA
+                    sh "python palindromoapp.py <<< ${palabra}"
+                }
             }
         }
     }
@@ -44,6 +44,5 @@ pipeline {
         }
     }
 }
-
 
     
