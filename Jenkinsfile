@@ -14,8 +14,8 @@ pipeline {
         stage('Run') {
             steps {
                 script {
-                    // Ejecutar el contenedor Docker
-                    bat 'docker run --rm palindromo-app'
+                    // Ejecutar el contenedor Docker y pasar una palabra como argumento
+                    bat 'docker run --rm palindromo-app python /app/palindromo.py "reconocer"'
                 }
             }
         }
