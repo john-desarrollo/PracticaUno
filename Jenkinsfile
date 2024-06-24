@@ -14,8 +14,15 @@ pipeline {
         stage('Run') {
             steps {
                 script {
-                    // Ejecutar el contenedor Docker y pasar una palabra como argumento
-                    bat 'docker run --rm palindromo-app python /app/palindromo.py "reconocer"'
+                    // Solicitar entrada al usuario
+                    def userInput = input(
+                        id: 'userInput', 
+                        message: 'Ingresa una palabra:',
+                        parameters: [string(defaultValue: '', description: 'Palabra a verificar')]
+                    )
+
+                    // Ejecutar el contenedor Docker y pasar la palabra como argumento
+                    bat "docker run --rm palindromo-app python /app/palindromo.py '${userInput}'"
                 }
             }
         }
