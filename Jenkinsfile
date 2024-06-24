@@ -1,17 +1,19 @@
 pipeline {
     agent any
+
     stages {
-        stage('Input Stage') {
+        stage('Ejecutar Script Python') {
             steps {
                 script {
                     def userInput = input(
-                        id: 'userInput', 
-                        message: 'Ingresa una palabra:', 
+                        id: 'userInput',
+                        message: 'Ingrese una palabra para verificar si es un palíndromo:',
                         parameters: [
-                            string(defaultValue: '', description: 'Palabra a verificar')
+                            [$class: 'StringParameterDefinition', defaultValue: '', description: 'Palabra a verificar']
                         ]
                     )
-                    echo "La palabra ingresada es: ${userInput}"
+                    
+                    sh "echo \"${userInput}\" | python3 ${WORKSPACE}/script_palindromo.py"
                 }
             }
         }
