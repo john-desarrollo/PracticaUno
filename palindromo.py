@@ -1,18 +1,10 @@
-import sys
-
 def es_palindromo(palabra):
-    palabra = palabra.lower().replace(" ", "")
-    return palabra == palabra[::-1]
+    palabra = palabra.lower()  # Convertimos la palabra a minúsculas para evitar problemas de mayúsculas
+    return palabra == palabra[::-1]  # Comparamos la palabra con su reverso
 
-if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Uso: python palindromo.py <palabra>")
-        sys.exit(1)
-    
-    palabra = sys.argv[1]
-    resultado = es_palindromo(palabra)
+palabra_usuario = input("Ingrese una palabra: ")
 
-    if resultado:
-        print(f"{palabra} es un palíndromo.")
-    else:
-        print(f"{palabra} no es un palíndromo.")
+if es_palindromo(palabra_usuario):
+    print("La palabra es un palíndromo!")
+else:
+    print("La palabra no es un palíndromo.")
