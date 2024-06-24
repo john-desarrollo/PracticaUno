@@ -5,8 +5,8 @@ pipeline {
         stage('Check Palindrome') {
             steps {
                 script {
-                    // Comando para ejecutar el script Python desde Jenkins
-                    def scriptOutput = sh(script: "python palindromo.py radar", returnStdout: true).trim()
+                    // Comando para ejecutar el script Python desde Jenkins en Windows
+                    def scriptOutput = bat(script: 'python palindromo.py radar', returnStdout: true).trim()
                     
                     // Verificar la salida del script para determinar si la prueba fue exitosa
                     if (scriptOutput.contains('es un palíndromo')) {
