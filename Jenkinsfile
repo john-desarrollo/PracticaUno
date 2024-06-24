@@ -11,13 +11,13 @@ pipeline {
         stage('Instalar Dependencias') {
             steps {
                 echo 'Instalando dependencias...'
-                sh 'pip install -r requirements.txt'
+                bat 'pip install -r requirements.txt'
             }
         }
         stage('Ejecutar Pruebas') {
             steps {
                 echo 'Ejecutando pruebas...'
-                sh 'pytest tests'
+                bat 'pytest tests'
             }
         }
         stage('Ejecutar Script') {
@@ -25,7 +25,7 @@ pipeline {
                 echo 'Ejecutando el script principal...'
                 script {
                     def palabra = input message: 'Ingrese una palabra:', ok: 'Continuar', parameters: [string(defaultValue: 'radar', description: 'Palabra a verificar', name: 'PALABRA')]
-                    sh "echo ${palabra} | python palindromo.py"
+                    bat "echo ${palabra} | python palindromo.py"
                 }
             }
         }
@@ -43,5 +43,3 @@ pipeline {
         }
     }
 }
-
-    
