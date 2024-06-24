@@ -26,7 +26,7 @@ pipeline {
                 input message: 'Ingrese una palabra:', ok: 'Continuar', parameters: [string(defaultValue: 'radar', description: 'Palabra a verificar', name: 'PALABRA')]
                 script {
                     def palabra = params.PALABRA
-                    sh "python palindromoapp.py <<< ${palabra}"
+                    sh "python palindromo.py <<< ${palabra}"
                 }
             }
         }
